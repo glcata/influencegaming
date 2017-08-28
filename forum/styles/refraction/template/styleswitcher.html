@@ -1,0 +1,196 @@
+<!-- PHP -->
+global $config, $template, $user;
+$template->assign_vars(array(
+
+                'REF_PRESET_STYLE'             => "{$config['ref_preset_style']}",
+		'REF_OVERLAY_STYLE'            => "{$config['ref_overlay_style']}",
+		'REF_BG_STYLE'                 => "{$config['ref_bg_style']}",
+		'REF_BG_FIXED'                 => "{$config['ref_bg_fixed']}",
+                'REF_SHOWCASE_TITLE'           => "{$config['ref_showcase_title']}",
+                'REF_SHOWCASE_TEXT'            => "{$config['ref_showcase_text']}",
+                'REF_SHOWCASE_LINK'            => "{$config['ref_showcase_link']}",
+                'REF_BODY_TEXT'                => "{$config['ref_body_text']}",
+                'REF_BODY_LINK'                => "{$config['ref_body_link']}", 
+));
+
+$current_theme = $user->theme['theme_path'];	
+$easy_theme = $_GET['ntheme'];
+
+if(!isset($_COOKIE[$current_theme."-tstyle"])) {
+$color_variation = $config['ref_preset_style'];
+}
+
+switch ($_COOKIE[$current_theme."-tstyle"]) {
+case style1:
+                $color_variation = "style1";
+                $template->assign_vars(array(
+                'REF_OVERLAY_STYLE'               => "dark",
+                'REF_PRESET_STYLE'		=> $color_variation,
+                'REF_BG_STYLE'		=> "bg".$color_variation,
+                'REF_BG_FIXED' => "scroll",
+                'REF_SHOWCASE_TITLE' => "#d2de00",
+                'REF_SHOWCASE_TEXT' => "#dddddd",
+                'REF_SHOWCASE_LINK' => "#A4AD2B",
+                'REF_BODY_TEXT' => "#aaaaaa",
+                'REF_BODY_LINK' => "#A4AD2B",
+));
+		break;	
+case style2:
+                $color_variation = "style2";
+                $template->assign_vars(array(
+                'REF_OVERLAY_STYLE'               => "light",
+                'REF_PRESET_STYLE'		=> $color_variation,
+                'REF_BG_STYLE'		=> "bg".$color_variation,
+                'REF_BG_FIXED' => "fixed",
+                'REF_SHOWCASE_TITLE' => "#000000",
+                'REF_SHOWCASE_TEXT' => "#000000",
+                'REF_SHOWCASE_LINK' => "#000000",
+                'REF_BODY_TEXT' => "#4D4D4D",
+                'REF_BODY_LINK' => "#7e8407",              
+));
+		break;	
+case style3:
+                 $color_variation = "style3";
+                 $template->assign_vars(array(
+                'REF_OVERLAY_STYLE'               => "dark",
+                'REF_PRESET_STYLE'		=> $color_variation,
+                'REF_BG_STYLE'		=> "bg".$color_variation,
+                'REF_BG_FIXED' => "fixed",
+                'REF_SHOWCASE_TITLE' => "#ffffff",
+                'REF_SHOWCASE_TEXT' => "#dddddd",
+                'REF_SHOWCASE_LINK' => "#21bddf",
+                'REF_BODY_TEXT' => "#999999",
+                'REF_BODY_LINK' => "#21bddf",                     
+));
+		break;
+case style4:
+                $color_variation = "style4";
+                $template->assign_vars(array(
+                'REF_OVERLAY_STYLE'               => "dark",
+                'REF_PRESET_STYLE'		=> $color_variation,
+                'REF_BG_STYLE'		=> "bg".$color_variation,
+                'REF_BG_FIXED' => "fixed",
+                'REF_SHOWCASE_TITLE' => "#f8d000",
+                'REF_SHOWCASE_TEXT' => "#dddddd",
+                'REF_SHOWCASE_LINK' => "#F3D104",
+                'REF_BODY_TEXT' => "#aaaaaa",
+                'REF_BODY_LINK' => "#F3D104",                   
+));
+		break;		
+case style5:
+                $color_variation = "style5";
+                $template->assign_vars(array(
+                'REF_OVERLAY_STYLE'               => "dark",
+                'REF_PRESET_STYLE'		=> $color_variation,
+                'REF_BG_STYLE'		=> "bg".$color_variation,
+                'REF_BG_FIXED' => "scroll",
+                'REF_SHOWCASE_TITLE' => "#ffffff",
+                'REF_SHOWCASE_TEXT' => "#ffffff",
+                'REF_SHOWCASE_LINK' => "#9ac615",
+                'REF_BODY_TEXT' => "#aaaaaa",
+                'REF_BODY_LINK' => "#9ac615",                   
+));                
+		break;
+case style6:
+                $color_variation = "style6";
+                $template->assign_vars(array(
+                'REF_OVERLAY_STYLE'               => "dark",
+                'REF_PRESET_STYLE'		=> $color_variation,
+                'REF_BG_STYLE'		=> "bg".$color_variation,
+                'REF_BG_FIXED' => "fixed",
+                'REF_SHOWCASE_TITLE' => "#ffa715",
+                'REF_SHOWCASE_TEXT' => "#dddddd",
+                'REF_SHOWCASE_LINK' => "#FFB028",
+                'REF_BODY_TEXT' => "#aaaaaa",
+                'REF_BODY_LINK' => "#FFB028",                  
+));                
+		break;
+case style7:
+                $color_variation = "style7";
+                $template->assign_vars(array(
+                'REF_OVERLAY_STYLE'               => "dark",
+                'REF_PRESET_STYLE'		=> $color_variation,
+                'REF_BG_STYLE'		=> "bg".$color_variation,
+                'REF_BG_FIXED' => "scroll",
+                'REF_SHOWCASE_TITLE' => "#ffffff",
+                'REF_SHOWCASE_TEXT' => "#dddddd",
+                'REF_SHOWCASE_LINK' => "#3c9be6",
+                'REF_BODY_TEXT' => "#999999",
+                'REF_BODY_LINK' => "#3c9be6",                   
+));                
+		break;
+case style8:
+                $color_variation = "style8";
+                $template->assign_vars(array(
+                'REF_OVERLAY_STYLE'               => "dark",
+                'REF_PRESET_STYLE'		=> $color_variation,
+                'REF_BG_STYLE'		=> "bg".$color_variation,
+                'REF_BG_FIXED' => "scroll",
+                'REF_SHOWCASE_TITLE' => "#fe8529",
+                'REF_SHOWCASE_TEXT' => "#dddddd",
+                'REF_SHOWCASE_LINK' => "#e13f00",
+                'REF_BODY_TEXT' => "#aaaaaa",
+                'REF_BODY_LINK' => "#e13f00",                 
+));
+		break;
+case style9:
+                $color_variation = "style9";
+                $template->assign_vars(array(
+                'REF_OVERLAY_STYLE'               => "dark",
+                'REF_PRESET_STYLE'		=> $color_variation,
+                'REF_BG_STYLE'		=> "bg".$color_variation,
+                'REF_BG_FIXED' => "scroll",
+                'REF_SHOWCASE_TITLE' => "#ffffff",
+                'REF_SHOWCASE_TEXT' => "#dddddd",
+                'REF_SHOWCASE_LINK' => "#e6003d",
+                'REF_BODY_TEXT' => "#aaaaaa",
+                'REF_BODY_LINK' => "#e6003d",                   
+));                
+		break;
+case style10:
+                $color_variation = "style10";
+                $template->assign_vars(array(
+                'REF_OVERLAY_STYLE'               => "light",
+                'REF_PRESET_STYLE'		=> $color_variation,
+                'REF_BG_STYLE'		=> "bg".$color_variation,
+                'REF_BG_FIXED' => "fixed",
+                'REF_SHOWCASE_TITLE' => "#000000",
+                'REF_SHOWCASE_TEXT' => "#333333",
+                'REF_SHOWCASE_LINK' => "#0087aa",
+                'REF_BODY_TEXT' => "#444444",
+                'REF_BODY_LINK' => "#0087aa",                  
+));                
+		break;               
+		}
+
+if(!empty($easy_theme)) {
+	ob_start();
+	setcookie($current_theme."-tstyle", $easy_theme, time()+31536000); /* Expires in a year */
+        $actual_path = $_SERVER['REQUEST_URI'];
+        $actual_style = "&ntheme=".$easy_theme;
+        $final_path = str_replace($actual_style,"",$actual_path);
+	header("Location: ".$final_path);
+	exit;
+	ob_end_flush();
+}
+
+if(isset($_COOKIE[$current_theme."-tstyle"])) {
+	$color_variation = $_COOKIE[$current_theme."-tstyle"];
+}
+
+$template->assign_vars(array(
+		'REF_PRESET_STYLE'		=> $color_variation,
+)
+	);
+        
+$delete_cookies = $_GET['delete_cookies'];
+if($delete_cookies == 'true') {
+
+ob_start();
+	setcookie($current_theme."-tstyle", "", time()-31536000);
+	header("Location: ". $_SERVER['PHP_SELF']);
+	exit;
+ob_end_flush();
+
+}
+<!-- ENDPHP -->

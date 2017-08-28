@@ -1,0 +1,891 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+
+<p>{L_TITLE_EXPLAIN}</p>
+
+<!-- IF S_ERROR -->
+	<div class="errorbox">
+		<h3>{L_WARNING}</h3>
+		<p>{ERROR_MSG}</p>
+	</div>
+<!-- ENDIF -->
+
+<!-- IF MODE == nexus -->
+<script type="text/javascript" src="../styles/nexus/template/rt_js/mootools.js"></script>
+<script type="text/javascript">
+		window.addEvent('domready', function(){ var JTooltips = new Tips($$('.hasTip'), { maxTitleChars: 50, fixed: false}); });
+		var stylesList = new Hash({});
+		var styleSelected = null;
+		window.addEvent('domready', function() {
+			styleSelected = $('nex_preset_style').getValue();
+			$('nex_preset_style').empty();
+			stylesList.set('style1', ['dark', 'light', 'light', 'yellow', 'dark']);
+			stylesList.set('style2', ['light', 'light', 'light', 'lightblue', 'light']);
+			stylesList.set('style3', ['dark', 'light', 'light', 'blue', 'dark']);
+			stylesList.set('style4', ['dark', 'dark', 'dark', 'orange', 'dark']);
+			stylesList.set('style5', ['light', 'light', 'light', 'green', 'dark']);
+			stylesList.set('style6', ['dark', 'light', 'light', 'grey', 'dark']);
+			stylesList.set('style7', ['light', 'dark', 'dark', 'brown', 'dark']);
+			stylesList.set('style8', ['light', 'dark', 'dark', 'red', 'dark']);
+			stylesList.set('style9', ['dark', 'dark', 'dark', 'darkblue', 'dark']);
+			stylesList.set('style10', ['light', 'dark', 'dark', 'darkyellow', 'dark']);
+		});			
+			/* START_DEBUG ONLY */
+			var debug_only = function() {};
+			/* END_DEBUG ONLY */
+			
+			window.addEvent('domready', function() {
+				
+				debug_only();
+				
+				// styles Combo
+				var stylesCombo = $('nex_preset_style');
+				var header_ = $('nex_header_style');
+				var body_ = $('nex_body_style');
+				var showcase_ = $('nex_showcase_style');
+				var primary_ = $('nex_primary_style');
+				var footer_ = $('nex_footer_style');
+				
+				stylesList.each(function(key, value) {
+					var option = new Element('option', {'value': value.toLowerCase()}).setHTML(value.capitalize());
+					if (value == styleSelected) option.setProperty('selected', 'selected');
+					option.inject(stylesCombo);
+				});
+				var option = new Element('option', {'value': 'custom'}).setHTML('Custom').inject(stylesCombo);
+				if (styleSelected == 'custom') option.setProperty('selected', 'selected');
+				
+				stylesCombo.addEvent('change', function(e) {
+					new Event(e).stop();
+					if (this.value == 'custom') return;
+					header_.getChildren().each(function(el) {
+						if (el.value == stylesList.get(this.value)[0]) el.selected = true;
+					}, this);
+					body_.getChildren().each(function(el) {
+						if (el.value == stylesList.get(this.value)[1]) el.selected = true;
+					}, this);
+					
+					showcase_.getChildren().each(function(el) {
+						if (el.value == stylesList.get(this.value)[2]) el.selected = true;
+					}, this);
+					
+					primary_.getChildren().each(function(el) {
+						if (el.value == stylesList.get(this.value)[3]) el.selected = true;
+					}, this);
+					
+					footer_.getChildren().each(function(el) {
+						if (el.value == stylesList.get(this.value)[4]) el.selected = true;
+					}, this);
+
+				});				
+			});
+		
+window.addEvent('domready', function() {		
+			$$('#nex_header_style', '#nex_body_style', '#nex_showcase_style', '#nex_primary_style', '#nex_footer_style').addEvent('change', function() {
+				$('nex_preset_style').selectedIndex = $('nex_preset_style').getChildren().length - 1;
+			});
+		});
+
+  </script>
+
+ <table class="toolbar" style="display: none;"><tr>
+<td class="button" id="toolbar-preview">
+</td>
+</tr></table>
+<!-- ENDIF -->
+
+
+<!-- IF MODE == refraction -->
+<link rel="stylesheet" href="../styles/refraction/template/moorainbow/mooRainbow.css" type="text/css" />
+<script type="text/javascript" src="../styles/refraction/template/rt_js/mootools.js"></script>
+<script type="text/javascript" src="../styles/refraction/template/moorainbow/mooRainbow.js"></script>
+ <script type="text/javascript">
+		window.addEvent('domready', function(){ var JTooltips = new Tips($$('.hasTip'), { maxTitleChars: 50, fixed: false}); });
+		var stylesList = new Hash({});
+		var styleSelected = null;
+		window.addEvent('domready', function() {
+			styleSelected = $('ref_preset_style').getValue();
+			$('ref_preset_style').empty();
+			stylesList.set('style1', ['dark', 'bgstyle1', 'scroll', '#d2de00', '#dddddd', '#A4AD2B', '#aaaaaa', '#A4AD2B']);
+			stylesList.set('style2', ['light', 'bgstyle2', 'fixed', '#000000', '#000000', '#000000', '#4D4D4D', '#7e8407']);
+			stylesList.set('style3', ['dark', 'bgstyle3', 'fixed', '#ffffff', '#dddddd', '#21bddf', '#999999', '#21bddf']);
+			stylesList.set('style4', ['dark', 'bgstyle4', 'fixed', '#f8d000', '#dddddd', '#F3D104', '#aaaaaa', '#F3D104']);
+			stylesList.set('style5', ['dark', 'bgstyle5', 'scroll', '#ffffff', '#ffffff', '#9ac615', '#aaaaaa', '#9ac615']);
+			stylesList.set('style6', ['dark', 'bgstyle6', 'fixed', '#ffa715', '#dddddd', '#FFB028', '#aaaaaa', '#FFB028']);
+			stylesList.set('style7', ['dark', 'bgstyle7', 'scroll', '#ffffff', '#dddddd', '#3c9be6', '#999999', '#3c9be6']);
+			stylesList.set('style8', ['dark', 'bgstyle8', 'scroll', '#fe8529', '#dddddd', '#e13f00', '#aaaaaa', '#e13f00']);
+			stylesList.set('style9', ['dark', 'bgstyle9', 'scroll', '#ffffff', '#dddddd', '#e6003d', '#aaaaaa', '#e6003d']);
+			stylesList.set('style10', ['light', 'bgstyle10', 'fixed', '#000000', '#333333', '#0087aa', '#444444', '#0087aa']);
+		});var rainbowLoad = function(name, hex) {				
+				if (hex) {
+					var n = name.replace('params', '');
+					$(n+'_input').getPrevious().value = hex;
+					$(n+'_input').getFirst().setStyle('background-color', hex);
+				}
+			};
+			
+			
+			/* START_DEBUG ONLY */
+			var debug_only = function() {};
+			/* END_DEBUG ONLY */
+			
+			window.addEvent('domready', function() {
+				
+				debug_only();
+				
+				// Styles Combo
+				var stylesCombo = $('ref_preset_style');
+				var overlay = $('ref_overlay_style');
+				var bg = $('ref_bg_style');
+				var fixd = $('ref_bg_fixed');
+				
+				stylesList.each(function(key, value) {
+					var option = new Element('option', {'value': value.toLowerCase()}).setHTML(value.capitalize());
+					if (value == styleSelected) option.setProperty('selected', 'selected');
+					option.inject(stylesCombo);
+				});
+				var option = new Element('option', {'value': 'custom'}).setHTML('Custom').inject(stylesCombo);
+				if (styleSelected == 'custom') option.setProperty('selected', 'selected');
+				
+				stylesCombo.addEvent('change', function(e) {
+					new Event(e).stop();
+					if (this.value == 'custom') return;
+					overlay.getChildren().each(function(el) {
+						if (el.value == stylesList.get(this.value)[0]) el.selected = true;
+					}, this);
+					bg.getChildren().each(function(el) {
+						if (el.value == stylesList.get(this.value)[1]) el.selected = true;
+					}, this);
+					
+					fixd.getChildren().each(function(el) {
+						if (el.value == stylesList.get(this.value)[2]) el.selected = true;
+					}, this);
+				
+					rainbowLoad('myRainbow_ref_showcase_title', stylesList.get(this.value)[3]);
+					rainbowLoad('myRainbow_ref_showcase_text', stylesList.get(this.value)[4]);
+					rainbowLoad('myRainbow_ref_showcase_link', stylesList.get(this.value)[5]);
+					rainbowLoad('myRainbow_ref_body_text', stylesList.get(this.value)[6]);
+					rainbowLoad('myRainbow_ref_body_link', stylesList.get(this.value)[7]);
+				});				
+			});
+
+
+<!-- PHP -->
+global $phpbb_root_path;
+include($phpbb_root_path."styles/refraction/template/elements/colorchooser.php");
+echo RokColorChooser::newRainbow('ref_showcase_title');
+echo RokColorChooser::newRainbow('ref_showcase_text');
+echo RokColorChooser::newRainbow('ref_showcase_link');
+echo RokColorChooser::newRainbow('ref_body_text');
+echo RokColorChooser::newRainbow('ref_body_link');
+<!-- ENDPHP -->		
+</script>
+<!-- ENDIF -->
+
+
+<!-- IF MODE == solarsentinel-->
+<link rel="stylesheet" href="../styles/solarsentinel/template/moorainbow/mooRainbow.css" type="text/css" />
+<script type="text/javascript" src="../styles/solarsentinel/template/rt_js/mootools.js"></script>
+<script type="text/javascript" src="../styles/solarsentinel/template/moorainbow/mooRainbow.js"></script>
+<script type="text/javascript">
+		window.addEvent('domready', function(){ var JTooltips = new Tips($$('.hasTip'), { maxTitleChars: 50, fixed: false}); });
+		var stylesList = new Hash({});
+		var styleSelected = null;
+		window.addEvent('domready', function() {
+			styleSelected = $('ss_preset_style').getValue();
+			$('ss_preset_style').empty();
+			stylesList.set('style1', ['black', 'white', 'bg-red', 'black', '#8d100a']);
+			stylesList.set('style2', ['blue', 'beige', 'bg-black', 'grey', '#3970b4']);
+			stylesList.set('style3', ['grey', 'white', 'bg-blue', 'blue', '#035b99']);
+			stylesList.set('style4', ['orange', 'beige', 'bg-grey', 'orange', '#de510b']);
+			stylesList.set('style5', ['red', 'white', 'bg-red', 'blue', '#980a00']);
+			stylesList.set('style6', ['green', 'beige', 'bg-white', 'blue', '#4e7805']);
+			stylesList.set('style7', ['blue', 'white', 'bg-grey', 'black', '#0269b3']);
+			stylesList.set('style8', ['orange', 'beige', 'bg-black', 'black', '#de510b']);
+			stylesList.set('style9', ['black', 'white', 'bg-white', 'red', '#980a00']);
+			stylesList.set('style10', ['red', 'beige', 'bg-grey', 'grey', '#980a00']);
+		});var rainbowLoad = function(name, hex) {				
+				if (hex) {
+					var n = name.replace('params', '');
+					$(n+'_input').getPrevious().value = hex;
+					$(n+'_input').getFirst().setStyle('background-color', hex);
+				}
+			};
+			
+			
+			/* START_DEBUG ONLY */
+			var debug_only = function() {
+				var td = new Element('td', {'id': 'toolbar-colorstyle', 'class': 'button'}).inject('toolbar-preview', 'before');
+				var a = new Element('a', {'class': 'toolbar', 'href': '#'}).inject(td).setText('Custom style');
+				new Element('span', {'class': 'icon-32-colorstyle', 'title': 'Output custom style'}).inject(a, 'top');
+				
+				var tr = new Element('tr').inject($('ss_primary_color').getParent().getParent(), 'after');
+		
+				
+				
+				
+			};
+			
+			/* END_DEBUG ONLY */
+			
+			window.addEvent('domready', function() {
+				
+				debug_only();
+				
+				// Styles Combo
+				var stylesCombo = $('ss_preset_style');
+				var header = $('ss_header_style');
+				var body = $('ss_body_style');
+				var bg = $('ss_bg_style');
+				var footer = $('ss_footer_style');
+				
+				stylesList.each(function(key, value) {
+					var option = new Element('option', {'value': value.toLowerCase()}).setHTML(value.capitalize());
+					if (value == styleSelected) option.setProperty('selected', 'selected');
+					option.inject(stylesCombo);
+				});
+				var option = new Element('option', {'value': 'custom'}).setHTML('Custom').inject(stylesCombo);
+				if (styleSelected == 'custom') option.setProperty('selected', 'selected');
+				
+				stylesCombo.addEvent('change', function(e) {
+					new Event(e).stop();
+					if (this.value == 'custom') return;
+					header.getChildren().each(function(el) {
+						if (el.value == stylesList.get(this.value)[0]) el.selected = true;
+					}, this);
+					body.getChildren().each(function(el) {
+						if (el.value == stylesList.get(this.value)[1]) el.selected = true;
+					}, this);
+					bg.getChildren().each(function(el) {
+						if (el.value == stylesList.get(this.value)[2]) el.selected = true;
+					}, this);
+					footer.getChildren().each(function(el) {
+						if (el.value == stylesList.get(this.value)[3]) el.selected = true;
+					}, this);
+					
+					rainbowLoad('myRainbow_ss_primary_color', stylesList.get(this.value)[4]);
+				});				
+			});
+		
+window.addEvent('domready', function() {		
+			var input = $('ss_primary_color');
+			var r_ss_primary_color = new MooRainbow('myRainbow_ss_primary_color_input', {
+				id: 'myRainbow_ss_primary_color',
+				startColor: $('ss_primary_color').getValue().hexToRgb(true),
+				imgPath: '../styles/solarsentinel/template/moorainbow/images/',
+				onChange: function(color) {
+					$('ss_preset_style').selectedIndex = $('ss_preset_style').getChildren().length - 1;
+					input.getNext().getFirst().setStyle('background-color', color.hex);
+					input.value = color.hex;
+					
+					if (this.visible) this.okButton.focus();
+				}
+			});
+			$$('#ss_body_style', '#ss_header_style', '#ss_bg_style', '#ss_footer_style').addEvent('change', function() {
+				$('ss_preset_style').selectedIndex = $('ss_preset_style').getChildren().length - 1;
+			});
+			
+			
+			r_ss_primary_color.okButton.setStyle('outline', 'none');
+			$('myRainbow_ss_primary_color_input').addEvent('click', function() {
+				r_ss_primary_color.okButton.focus();
+			});
+			input.addEvent('keyup', function(e) {
+				e = new Event(e);
+				if ((this.value.length == 4 || this.value.length == 7) && this.value[0] == '#') {
+					var rgb = new Color(this.value);
+					var hex = this.value;
+					var hsb = rgb.rgbToHsb();
+					var color = {
+						'hex': hex,
+						'rgb': rgb,
+						'hsb': hsb
+					}
+					r_ss_primary_color.fireEvent('onChange', color);
+					r_ss_primary_color.manualSet(color.rgb);
+				};
+			});
+			$('ss_preset_style').addEvent('change', function() {
+				r_ss_primary_color.backupColor = $('ss_primary_color').getValue().hexToRgb(true);
+				r_ss_primary_color.currentColor = $('ss_primary_color').getValue().hexToRgb(true);
+				r_ss_primary_color.layout.backup.setStyle('background-color', $('ss_primary_color').getValue());	
+			});
+			input.getNext().getFirst().setStyle('background-color', r_ss_primary_color.sets.hex);
+			rainbowLoad('myRainbow_ss_primary_color');
+		});
+
+  </script>
+			
+
+			
+   <table class="toolbar" style="display: none;"><tr>
+<td class="button" id="toolbar-preview">
+</td>
+</tr></table>
+   
+<!-- ENDIF -->
+
+
+<!-- IF MODE == mynxx-->
+  <link rel="stylesheet" href="../styles/mynxx/template/moorainbow/mooRainbow.css" type="text/css" />
+  <script type="text/javascript" src="../styles/mynxx/template/rt_js/mootools.js"></script>
+  <script type="text/javascript" src="../styles/mynxx/template/moorainbow/mooRainbow.js"></script>
+<script type="text/javascript">
+		window.addEvent('domready', function(){ var JTooltips = new Tips($$('.hasTip'), { maxTitleChars: 50, fixed: false}); });
+		var stylesList = new Hash({});
+		var styleSelected = null;
+		window.addEvent('domready', function() {
+			styleSelected = $('mynxx_preset_style').getValue();
+			$('mynxx_preset_style').empty();
+			stylesList.set('dark-red', ['dark', '#cf230b']);
+			stylesList.set('dark-blue', ['dark', '#2986d0']);
+			stylesList.set('dark-green', ['dark', '#578e13']);
+			stylesList.set('dark-orange', ['dark', '#f0722e']);
+			stylesList.set('light-red', ['light', '#cf230b']);
+			stylesList.set('light-blue', ['light', '#2986d0']);
+			stylesList.set('light-green', ['light', '#578e13']);
+			stylesList.set('light-orange', ['light', '#f0722e']);
+		});var rainbowLoad = function(name, hex) {				
+				if (hex) {
+					$(name.replace('params', '')+'_input').getPrevious().value = hex;
+					$(name.replace('params', '')+'_input').getFirst().setStyle('background-color', hex);
+				}
+			};
+			
+			/* START_DEBUG ONLY */
+			var debug_only = function() {
+				var td = new Element('td', {'id': 'toolbar-colorstyle', 'class': 'button'}).inject('toolbar-preview', 'before');
+				var a = new Element('a', {'class': 'toolbar', 'href': '#'}).inject(td).setText('Custom style');
+				new Element('span', {'class': 'icon-32-colorstyle', 'title': 'Output custom style'}).inject(a, 'top');
+				
+				var tr = new Element('tr').inject($('mynxx_primary_color').getParent().getParent(), 'after');
+				
+				
+				var scroll = new Fx.Scroll(window, {offset: {x: false, y: -5}});
+				a.addEvent('click', function(e) {
+					new Event(e).stop();
+					var arr = [];
+
+					tarea.setHTML('\'style_name\' => array(\''+$('mynxx_body_style').getValue()+'\', \''+$('mynxx_primary_color').getValue()+'\')');
+					
+					tarea.focus();
+					tarea.select();
+					
+					scroll.toElement(tarea);
+				});
+			};
+			
+			/* END_DEBUG ONLY */
+			
+			window.addEvent('domready', function() {
+				
+				debug_only();
+				
+				// Styles Combo
+				var stylesCombo = $('mynxx_preset_style');
+				var body = $('mynxx_body_style');
+				
+				stylesList.each(function(key, value) {
+					var option = new Element('option', {'value': value.toLowerCase()}).setHTML(value.capitalize());
+					if (value == styleSelected) option.setProperty('selected', 'selected');
+					option.inject(stylesCombo);
+				});
+				var option = new Element('option', {'value': 'custom'}).setHTML('Custom').inject(stylesCombo);
+				if (styleSelected == 'custom') option.setProperty('selected', 'selected');
+				
+				stylesCombo.addEvent('change', function(e) {
+					new Event(e).stop();
+					if (this.value == 'custom') return;
+					
+					body.getChildren().each(function(el) {
+						if (el.value == stylesList.get(this.value)[0]) el.selected = true;
+					}, this);
+					
+					
+					rainbowLoad('myRainbow_mynxx_primary_color', stylesList.get(this.value)[1]);
+				});				
+			});
+		
+window.addEvent('domready', function() {		
+			var input = $('mynxx_primary_color');
+			var r_mynxx_primary_color = new MooRainbow('myRainbow_mynxx_primary_color_input', {
+				id: 'myRainbow_mynxx_primary_color',
+				startColor: $('mynxx_primary_color').getValue().hexToRgb(true),
+				imgPath: '../styles/mynxx/template/moorainbow/images/',
+				onChange: function(color) {
+					$('mynxx_preset_style').selectedIndex = $('mynxx_preset_style').getChildren().length - 1;
+					input.getNext().getFirst().setStyle('background-color', color.hex);
+					input.value = color.hex;
+					
+					if (this.visible) this.okButton.focus();
+				}
+			});
+			$('mynxx_body_style').addEvent('change', function() {
+				$('mynxx_preset_style').selectedIndex = $('mynxx_preset_style').getChildren().length - 1;
+			});
+			r_mynxx_primary_color.okButton.setStyle('outline', 'none');
+			$('myRainbow_mynxx_primary_color_input').addEvent('click', function() {
+				r_mynxx_primary_color.okButton.focus();
+			});
+			input.addEvent('keyup', function(e) {
+				e = new Event(e);
+				if ((this.value.length == 4 || this.value.length == 7) && this.value[0] == '#') {
+					var rgb = new Color(this.value);
+					var hex = this.value;
+					var hsb = rgb.rgbToHsb();
+					var color = {
+						'hex': hex,
+						'rgb': rgb,
+						'hsb': hsb
+					}
+					r_mynxx_primary_color.fireEvent('onChange', color);
+					r_mynxx_primary_color.manualSet(color.rgb);
+				};
+			});
+			$('mynxx_preset_style').addEvent('change', function() {
+				r_mynxx_primary_color.backupColor = $('mynxx_primary_color').getValue().hexToRgb(true);
+				r_mynxx_primary_color.currentColor = $('mynxx_primary_color').getValue().hexToRgb(true);
+				r_mynxx_primary_color.layout.backup.setStyle('background-color', $('mynxx_primary_color').getValue());	
+			});
+			input.getNext().getFirst().setStyle('background-color', r_mynxx_primary_color.sets.hex);
+			rainbowLoad('myRainbow_mynxx_primary_color');
+		});
+
+  </script>
+			
+   <table class="toolbar" style="display: none;"><tr>
+<td class="button" id="toolbar-preview">
+</td>
+</tr></table>
+   
+<!-- ENDIF -->
+
+
+<!-- IF MODE == meridian-->
+  <link rel="stylesheet" href="../styles/meridian/template/moorainbow/mooRainbow.css" type="text/css" />
+  <script type="text/javascript" src="../styles/meridian/template/rt_js/mootools.js"></script>
+  <script type="text/javascript" src="../styles/meridian/template/moorainbow/mooRainbow.js"></script>
+   <script type="text/javascript">
+  window.addEvent('domready', function(){ var JTooltips = new Tips($$('.hasTip'), { maxTitleChars: 50, fixed: false}); });
+		var stylesList = new Hash({});
+		var styleSelected = null;
+		window.addEvent('domready', function() {
+			styleSelected = $('merid_preset_style').getValue();
+			$('merid_preset_style').empty();
+			stylesList.set('style1', ['light', 'header1', '#cc0000', '#333333', '#287cb8']);
+			stylesList.set('style2', ['dark', 'header1', '#5ea070', '#999999', '#5cb3e6']);
+			stylesList.set('style3', ['beige', 'header1', '#81000A', '#3F3F37', '#4E9C96']);
+			stylesList.set('style4', ['blue', 'header1', '#cc0000', '#336d83', '#cc0000']);
+		});var rainbowLoad = function(name, hex) {				
+				if (hex) {
+					$(name.replace('params', '')+'_input').getPrevious().value = hex;
+					$(name.replace('params', '')+'_input').getFirst().setStyle('background-color', hex);
+				}
+			};
+			
+			
+			/* START_DEBUG ONLY */
+			var debug_only = function() {
+				var td = new Element('td', {'id': 'toolbar-colorstyle', 'class': 'button'}).inject('toolbar-preview', 'before');
+				var a = new Element('a', {'class': 'toolbar', 'href': '#'}).inject(td).setText('Custom style');
+				new Element('span', {'class': 'icon-32-colorstyle', 'title': 'Output custom style'}).inject(a, 'top');
+				
+				var tr = new Element('tr').inject($('merid_link_color').getParent().getParent(), 'after');
+				var td1 = new Element('td', {'class': 'paramlist_key', 'styles': 'width: 40%;'}).inject(tr);
+			
+				
+				var td2 = new Element('td', {'class': 'paramlist_value'}).inject(tr);
+				
+			};
+			
+			/* END_DEBUG ONLY */
+			
+			window.addEvent('domready', function() {
+				
+				debug_only();
+				
+				// Styles Combo
+				var stylesCombo = $('merid_preset_style');
+				var body = $('merid_body_style');
+				var header = $('merid_header_style');
+				
+				stylesList.each(function(key, value) {
+					var option = new Element('option', {'value': value.toLowerCase()}).setHTML(value.capitalize());
+					if (value == styleSelected) option.setProperty('selected', 'selected');
+					option.inject(stylesCombo);
+				});
+				var option = new Element('option', {'value': 'custom'}).setHTML('Custom').inject(stylesCombo);
+				if (styleSelected == 'custom') option.setProperty('selected', 'selected');
+				
+				stylesCombo.addEvent('change', function(e) {
+					new Event(e).stop();
+					if (this.value == 'custom') return;
+					
+					body.getChildren().each(function(el) {
+						if (el.value == stylesList.get(this.value)[0]) el.selected = true;
+					}, this);
+					
+					header.getChildren().each(function(el) {
+						if (el.value == stylesList.get(this.value)[1]) el.selected = true;
+					}, this);
+					
+					rainbowLoad('myRainbow_merid_titles_color', stylesList.get(this.value)[2]);
+					rainbowLoad('myRainbow_merid_body_color', stylesList.get(this.value)[3]);
+					rainbowLoad('myRainbow_merid_link_color', stylesList.get(this.value)[4]);
+				});				
+			});
+			
+<!-- PHP -->
+global $phpbb_root_path;
+include($phpbb_root_path."styles/meridian/template/elements/colorchooser.php");
+echo RokColorChooser::newRainbow('merid_titles_color');
+echo RokColorChooser::newRainbow('merid_body_color');
+echo RokColorChooser::newRainbow('merid_link_color');
+<!-- ENDPHP -->
+			
+</script>
+   <table class="toolbar" style="display: none;"><tr>
+<td class="button" id="toolbar-preview">
+</td>
+</tr></table>
+   
+<!-- ENDIF -->
+
+<!-- IF MODE == akiraka -->
+  <link rel="stylesheet" href="../styles/akiraka/template/admin/preview/preview.css" type="text/css" />
+  <link rel="stylesheet" href="../styles/akiraka/template/moorainbow/mooRainbow.css" type="text/css" />
+  <script type="text/javascript" src="../styles/akiraka/template/moorainbow/mootools.js"></script>
+  <script type="text/javascript" src="../styles/akiraka/template/moorainbow/mooRainbow.js"></script>
+  <script type="text/javascript">
+		window.addEvent('domready', function(){ var JTooltips = new Tips($$('.hasTip'), { maxTitleChars: 50, fixed: false}); });
+		var stylesList = new Hash({});
+		var styleSelected = null;
+		window.addEvent('domready', function() {
+			styleSelected = $('akir_preset_style').getValue();
+			$('akir_preset_style').empty();
+			stylesList.set('style1', ['h-dark', 's-dark', 'b-dark', 'bt-dark', 'texture1', '#121212','#232b00', '#000000', '#191919', '#262626', '#cc0000', '#cccccc', '#ffffff', '#ff9b01', '#afc78c', '#ffffff', '#666666', '#cccccc', '#666666', '#cccccc', '#666666', '#999999']);
+			stylesList.set('style2', ['h-dark', 's-dark', 'b-dark', 'bt-dark', 'texture2', '#121212','#361705', '#000000', '#191919', '#262626', '#007E7E', '#cccccc', '#ffffff', '#00dcdf', '#bc9780', '#ffffff', '#666666', '#cccccc', '#666666', '#cccccc', '#666666', '#999999']);
+			stylesList.set('style3', ['h-dark', 's-dark', 'b-dark', 'bt-dark', 'texture3', '#121212','#171f2a', '#000000', '#191919', '#262626', '#55729c', '#cccccc', '#ffffff', '#f2c304', '#97a6b9', '#ffffff', '#666666', '#cccccc', '#666666', '#cccccc', '#666666', '#999999']);
+			stylesList.set('style4', ['h-dark', 's-dark', 'b-dark', 'bt-dark', 'texture3', '#1a1108','#412f18', '#000000', '#191919', '#262626', '#abab00', '#cccccc', '#ffffff', '#b8b803', '#d5b07c', '#ffffff', '#666666', '#cccccc', '#666666', '#cccccc', '#666666', '#999999']);
+			stylesList.set('style5', ['h-dark', 's-dark', 'b-dark', 'bt-dark', 'notexture', '#121212','#222222', '#000000', '#191919', '#262626', '#2176a3', '#cccccc', '#ffffff', '#f57c00', '#b0b0b0', '#ffffff', '#666666', '#cccccc', '#666666', '#cccccc', '#666666', '#999999']);
+			stylesList.set('style6', ['h-dark', 's-dark', 'b-dark', 'bt-dark', 'texture4', '#000000','#8d120a', '#000000', '#191919', '#262626', '#999999', '#cccccc', '#ffffff', '#cccccc', '#f89193', '#ffffff', '#666666', '#cccccc', '#666666', '#cccccc', '#666666', '#999999']);
+			stylesList.set('style7', ['h-dark', 's-dark', 'b-dark', 'bt-dark', 'texture1', '#121212','#504a2d', '#000000', '#191919', '#262626', '#d4c595', '#cccccc', '#ffffff', '#d7ccaf', '#D2CCA4', '#ffffff', '#666666', '#cccccc', '#666666', '#cccccc', '#666666', '#999999']);
+			stylesList.set('style8', ['h-dark', 's-dark', 'b-light', 'bt-dark', 'texture3', '#333333','#ffffff', '#000000', '#191919', '#262626', '#0099cc', '#cccccc', '#ffffff', '#000000', '#333333', '#055a76', '#666666', '#cccccc', '#666666', '#cccccc', '#666666', '#999999']);
+			stylesList.set('style9', ['h-dark', 's-dark', 'b-light', 'bt-dark', 'texture1', '#121212','#ffffff', '#000000', '#191919', '#262626', '#999999', '#cccccc', '#ffffff', '#333333', '#333333', '#63a500', '#666666', '#cccccc', '#666666', '#cccccc', '#666666', '#999999']);
+			stylesList.set('style10', ['h-dark', 's-light', 'b-light', 'bt-dark', 'notexture', '#000000','#ffffff', '#000000', '#191919', '#262626', '#999999', '#cccccc', '#ffffff', '#666666', '#333333', '#663399', '#666666', '#cccccc', '#666666', '#cccccc', '#666666', '#999999']);
+		});
+			var RainbowPreview = {
+				'myRainbow_akir_header_color': ['header', 'background-color'],
+				'myRainbow_akir_body_color': ['body', 'background-color'],
+				'myRainbow_akir_botbar_color': ['botbar', 'background-color'],
+				'myRainbow_akir_botsection_color': ['botsec', 'background-color'],
+				'myRainbow_akir_footer_color': ['footer', 'background-color'],
+				'myRainbow_akir_logo_text': ['logo-text, #preview .photo-block', 'color'],
+				'myRainbow_akir_header_text': ['header-text, #preview .search-text', 'color'],
+				'myRainbow_akir_header_link': ['header-text .link', 'color'],
+				'myRainbow_akir_body_highlight': ['body-text h1', 'color'],
+				'myRainbow_akir_body_text': ['body-text', 'color'],
+				'myRainbow_akir_body_link': ['body-text h1 span, #preview .body-text a', 'color'],
+				'myRainbow_akir_botbar_text': ['botbar-text', 'color'],
+				'myRainbow_akir_botbar_link': ['botbar-text a', 'color'],
+				'myRainbow_akir_botsection_text': ['botsec-text', 'color'],
+				'myRainbow_akir_botsection_link': ['botsec-text a', 'color'],
+				'myRainbow_akir_footer_text': ['footer-text', 'color'],
+				'myRainbow_akir_footer_link': ['footer-text a', 'color']
+			};
+			
+			var rainbowLoad = function(name, hex) {
+				var preview = RainbowPreview[name];
+				
+				if (hex) {
+					$(name+'_input').getPrevious().value = hex;
+					$(name+'_input').getFirst().setStyle('background-color', hex);
+				}
+				var hex = hex || $(name+'_input').getFirst().getStyle('background-color');
+				
+				if (preview.length == 2) {
+					$$('#preview .'+preview[0]).setStyle(preview[1], hex);
+				} else if (preview.length == 3) {
+					$$('#preview .'+preview[0]).setStyle(preview[1], hex);
+					$$('#preview .'+preview[0]).setStyle(preview[2], hex);
+				}
+			};
+			
+			
+			/* START_DEBUG ONLY */
+			var debug_only = function() {
+				var td = new Element('td', {'id': 'toolbar-colorstyle', 'class': 'button'}).inject('toolbar-preview', 'before');
+				var a = new Element('a', {'class': 'toolbar', 'href': '#'}).inject(td).setText('Custom style');
+				new Element('span', {'class': 'icon-32-colorstyle', 'title': 'Output custom style'}).inject(a, 'top');
+				
+				var tr = new Element('tr').inject($('akir_overlay_texture_style').getParent().getParent(), 'after');
+				var td1 = new Element('td', {'class': 'paramlist_key', 'styles': 'width: 40%;'}).inject(tr);
+		
+				
+				var scroll = new Fx.Scroll(window, {offset: {x: false, y: -5}});
+				a.addEvent('click', function(e) {
+					new Event(e).stop();
+					var arr = [];
+					for (color in RainbowPreview) {
+						arr.push($(color+'_input').getFirst().getStyle('background-color'));
+					}
+					tarea.setHTML('\'style_name\' => array(\''+$('akir_header_overlay_style').getValue()+'\', \''+$('akir_body_overlay_style').getValue()+'\', \''+$('akir_botsection_overlay_style').getValue()+'\', \''+$('akir_overlay_texture_style').getValue()+'\', "' + arr.join('", "') + '")');
+					tarea.focus();
+					tarea.select();
+					
+					scroll.toElement(tarea);
+				});
+			};
+			
+			/* END_DEBUG ONLY */
+			
+			window.addEvent('domready', function() {
+				
+				debug_only();
+				
+				// Styles Combo
+				var stylesCombo = $('akir_preset_style');
+				var texture = $('akir_overlay_texture_style');
+				var header = $('akir_header_overlay_style'), main = $('akir_body_overlay_style'), bottom = $('akir_botsection_overlay_style');
+				stylesList.each(function(key, value) {
+					var option = new Element('option', {'value': value.toLowerCase()}).setHTML(value.capitalize());
+					if (value == styleSelected) option.setProperty('selected', 'selected');
+					option.inject(stylesCombo);
+				});
+				var option = new Element('option', {'value': 'custom'}).setHTML('Custom').inject(stylesCombo);
+				if (styleSelected == 'custom') option.setProperty('selected', 'selected');
+				
+				stylesCombo.addEvent('change', function(e) {
+					new Event(e).stop();
+					if (this.value == 'custom') return;
+					
+					header.getChildren().each(function(el) {
+						if (el.value == stylesList.get(this.value)[0]) el.selected = true;
+					}, this);
+					
+					main.getChildren().each(function(el) {
+						if (el.value == stylesList.get(this.value)[2]) el.selected = true;
+					}, this);
+					
+					bottom.getChildren().each(function(el) {
+						if (el.value == stylesList.get(this.value)[3]) el.selected = true;
+					}, this);
+					
+					texture.getChildren().each(function(el) {
+						if (el.value == stylesList.get(this.value)[4]) el.selected = true;
+					}, this);
+					
+					var i = 5;
+					for (color in RainbowPreview) {
+						rainbowLoad(color, stylesList.get(this.value)[i]);
+						i++;
+					}
+				});
+				
+				// Previewer
+				var previewWindow = $('preview-window');
+				var previewParent = previewWindow.getParent();
+				var slide = new Fx.Slide(previewParent, {'wait': false}).show();
+				previewParent.over = false;
+				previewParent.leave = false;
+				previewParent.drop = false;
+
+				previewWindow.setStyle('cursor', 'move').makeDraggable({
+					'droppables': $$(previewParent)
+				});
+				previewWindow.addEvent('mousedown', function() {
+					this.setStyle('position', 'absolute');
+				});
+				previewParent.addEvents({
+					'over': function(drag, obj) {
+						if (previewParent.over) return;
+						obj.droppables[0].setStyles({
+							'border': '3px solid #d3d3d3',
+							'background-color': '#f3f3f3'
+						});
+						slide.show();
+						previewParent.over = true;
+						previewParent.leave = false;
+						previewParent.drop = false;					
+					},
+
+					'leave': function(drag, obj) {
+						if (previewParent.leave) return;
+						obj.droppables[0].setStyles({
+							'border': '',
+							'background-color': ''
+						});
+						slide.hide();
+						previewParent.over = false;
+						previewParent.leave = true;
+						previewParent.drop = false;
+					},
+
+					'drop': function(drag, obj) {
+						if (previewParent.drop) return;
+
+						previewWindow.setStyle('position', '');
+						obj.droppables[0].setStyles({
+							'border': '',
+							'background-color': ''
+						});
+
+						previewParent.over = false;
+						previewParent.leave = false;
+						previewParent.drop = true;
+					}
+				});
+				
+			});
+		
+<!-- PHP -->
+global $phpbb_root_path;
+include($phpbb_root_path."styles/akiraka/template/elements/colorchooser.php");
+echo RokColorChooser::newRainbow('akir_header_color');
+echo RokColorChooser::newRainbow('akir_logo_text');
+echo RokColorChooser::newRainbow('akir_header_text');
+echo RokColorChooser::newRainbow('akir_header_link');
+echo RokColorChooser::newRainbow('akir_body_color');
+echo RokColorChooser::newRainbow('akir_botbar_color');
+echo RokColorChooser::newRainbow('akir_botsection_color');
+echo RokColorChooser::newRainbow('akir_footer_color');
+echo RokColorChooser::newRainbow('akir_body_highlight');
+echo RokColorChooser::newRainbow('akir_body_text');
+echo RokColorChooser::newRainbow('akir_body_link');
+echo RokColorChooser::newRainbow('akir_botbar_text');
+echo RokColorChooser::newRainbow('akir_botbar_link');
+echo RokColorChooser::newRainbow('akir_botsection_text');
+echo RokColorChooser::newRainbow('akir_botsection_link');
+echo RokColorChooser::newRainbow('akir_footer_text');
+echo RokColorChooser::newRainbow('akir_footer_link');
+<!-- ENDPHP -->
+  </script>
+	
+<table class="toolbar" style="display: none;"><tr>
+<td class="button" id="toolbar-preview">
+</td>
+</tr></table>
+
+						
+			<div style="position:relative;">
+            <div style="width: 341px; height: 273px;"><div id="preview-window" style="top:0;left:0;">
+                <div class="window-padding">
+                    <div id="preview">
+                        <div class="header"></div>
+                        <div class="body"></div>
+                        <div class="botbar"></div>
+                        <div class="botsec"></div>
+                        <div class="footer"></div>
+                        <div class="overlay"></div>
+                        <div class="logo-text">Yourdomain.com</div>
+                        <div class="search-text">Search</div>
+                        <div class="header-text"><span>Home</span> <span class="link">Entries</span> <span>Photos</span> <span>Videos</span> <span>Audio</span> <span>Archives</span></div>
+                        
+                        <div class="body-text">
+                            <div class="content-block">
+                                <h1>A short text to describe your forum</h1>
+                                <p><a href="#">Topic title</a><br />Lorem ipsum dolor sit amet,  Faucibus ac, Sagittis eu. &nbsp; &nbsp; 100&nbsp;&nbsp; &nbsp;100</p>
+                               <p><a href="#">Topic title</a><br />Lorem ipsum dolor sit amet,  Faucibus ac, Sagittis eu. &nbsp; &nbsp; 100&nbsp;&nbsp; &nbsp;100</p>
+			       <p><a href="#">Topic title</a><br />Lorem ipsum dolor sit amet,  Faucibus ac, Sagittis eu. &nbsp; &nbsp; 100&nbsp;&nbsp; &nbsp;100</p>
+                            </div>
+                            <div class="side-block">
+                                <h1>Side <span>Module</span></h1>
+                                <p><br />Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing elit</a>. Faucibus ac, Sagittis eu, <a href="#">semper id, rutrum in, mauris</a>. </p>
+                            </div>
+                        </div>
+                        <div class="botbar-text">This is some sample text in this bottom bar <a href="#">area and also a link</a> for good measure</div>
+                        <div class="botsec-text">
+                            Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing</a> elit. Fusce lacinia ultrices enim. Morbi tincidunt urna sollicitudin nisi. Nullam id metus in pede suscipit molestie. Suspendisse potenti. <a href="#">Suspendisse potenti</a>. Mauris ut leo. Nullam cursus. Suspendisse potenti. In hac habitasse platea dictumst. <a href="#">Etiam ipsum sapien, feugiat vitae, ornare</a> et, porttitor sed, nibh. Mauris laoreet magna eget metus. Vivamus arcu sapien, lobortis vel, dignissim ut, euismod a, enim. 
+                        </div>
+                        <div class="footer-text"><p>This is <a href="#">some sample</a> text in this footer <a href="#">area and also a link</a> for good measure</p></div>
+                    </div>
+                </div>
+            </div></div>
+
+			</div>
+	
+		
+		
+
+
+
+
+<!-- ENDIF -->
+<form id="acp_joomla" method="post" action="{U_ACTION}">
+<!-- BEGIN options -->
+
+	<!-- IF options.S_LEGEND -->
+		<!-- IF not options.S_FIRST_ROW -->
+			</fieldset>
+		<!-- ENDIF -->
+		<fieldset>
+			<legend>{options.LEGEND}</legend>
+	<!-- ELSE -->
+
+		<dl>
+			<dt><label for="{options.KEY}">{options.TITLE}:</label><!-- IF options.S_EXPLAIN --><br /><span>{options.TITLE_EXPLAIN}</span><!-- ENDIF --></dt>
+			<dd>{options.CONTENT}<!-- IF MODE == akiraka -->
+			<!-- IF options.KEY == akir_header_color --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == akir_showcase_color --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == akir_body_color --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == akir_botbar_color --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == akir_botsection_color --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == akir_footer_color --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == akir_logo_text --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == akir_header_text --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == akir_header_link --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == akir_showcase_text --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == akir_showcase_link --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == akir_showcase_highlight_text --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == akir_showcase_highlight --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == akir_body_highlight --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == akir_body_text --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == akir_body_link --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == akir_botbar_text --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == akir_botbar_link --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == akir_botsection_text --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == akir_botsection_link --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == akir_footer_text --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == akir_footer_link --> <div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- ENDIF -->
+			<!-- IF MODE == meridian -->
+			<!-- IF options.KEY == merid_titles_color --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == merid_body_color --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- IF options.KEY == merid_link_color --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- ENDIF -->
+			<!-- IF MODE == mynxx -->
+			<!-- IF options.KEY == mynxx_primary_color --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- ENDIF -->
+			<!-- IF MODE == solarsentinel -->
+			<!-- IF options.KEY == ss_primary_color --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- ENDIF -->
+			
+			<!-- IF MODE == refraction -->
+<!-- IF options.KEY == ref_showcase_title --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+<!-- IF options.KEY == ref_showcase_text --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+<!-- IF options.KEY == ref_showcase_link --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+<!-- IF options.KEY == ref_body_text --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+<!-- IF options.KEY == ref_body_link --><div class="picker" id="myRainbow_{options.KEY}_input"><div class="overlay"></div></div><!-- ENDIF -->
+			<!-- ENDIF -->
+		</dd></dl>
+		
+	<!-- ENDIF -->
+<!-- END options -->
+
+<!-- IF S_AUTH -->
+	<!-- BEGIN auth_tpl -->
+		{auth_tpl.TPL}
+	<!-- END auth_tpl -->
+<!-- ENDIF -->
+
+	<p class="submit-buttons">
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+	</p>
+	{S_FORM_TOKEN}
+</fieldset>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

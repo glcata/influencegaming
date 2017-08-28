@@ -1,0 +1,58 @@
+﻿#primaryHeaderArea {
+	height:426px;
+	width:984px;
+	position:relative;
+	overflow:visible;
+}
+
+#headerCharsBGImg,#transparentMapper {
+	height:426px;
+	width:1068px;
+	position:absolute;
+	top:0px;
+	left:-34px;
+	z-index:20;
+}
+#transparentMapper {
+	z-index:50;
+}
+
+#getItBtn:hover {
+	background-position:bottom;
+}
+
+.charOnImage {
+	position:absolute;
+	z-index:40;
+	display:none;
+}
+#charLIZ {
+	width:214px;
+	height:262px;
+	top:0px;
+	left:-34px;
+}
+#charTF {
+	width:182px;
+	height:200px;
+	top:0px;
+	left:77px;
+}
+#charLVS {
+	width:157px;
+	height:244px;
+	top:0px;
+	left:143px;
+}
+#charINGER {
+	width:206px;
+	height:242px;
+	top:0px;
+	left:272px;
+}
+#charOVERDOSED {
+	width:203px;
+	height:214px;
+	top:0px;
+	left:362px;
+}

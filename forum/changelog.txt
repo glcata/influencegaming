@@ -1,0 +1,73 @@
+Changelog - RokBB3 
+1.6
+Files affected
+- rokbb3.php
+- includes/session.php
+- acp/acp_joomla.php
+- acp/info/acp_joomla.php
+- language/en/mods/acp_joomla.php
+
+1.5.3
+Files affected:
+- rokbb3.php
+- acp/acp_joomla.php
+- language/en/mods/acp_joomla.php
+
+Fixes and enhancements:
+- Replicant2 additions and fixes to support latest relase.
+
+1.5.2
+Files affected:
+- rokbb3.php
+- acp/acp_joomla.php
+- language/en/mods/acp_joomla.php
+
+Fixes and enhancements:
+- Perihelion additions and fixes to support latest relase.
+1.5.1
+Files affected:
+- rokbb3.php
+- acp/acp_joomla.php
+- language/en/mods/acp_joomla.php
+
+Fixes and enhancements:
+- HiveMind additions and fixes to support latest relase.
+
+1.5
+Files affected:
+- rokbb3.php
+- includes/session.php
+- acp/acp_joomla.php
+- acp/info/acp_joomla.php
+- language/en/mods/acp_joomla.php
+
+Fixes and enhancements:
+- reworked menu inclusion script to provide better compatibility with RokBridge
+- fixed avatar error when "allow_call_time_pass_reference" option in php.ini is set to Off
+- reworked ColorSwitcher script, script is now a little bit faster and it's not loaded to current user session.
+- a lot code cleanups
+
+1.0.4
+Files affected: rokbb3.php
+
+Fixes:
+- reworked avatar displaying script.Now you can paste {USER_AVATAR} in any place and it should display current user avatar.Also added support for avatars in RokBridge and fixed issue with avatars from phpbb3 library.
+
+1.0.3
+Files affected: rokbb3.php
+
+Fixes:
+- reworked browser checking script for Replicant2 and others.
+
+1.0.2
+Files affected: session.php
+
+Fixes:
+- fixed switching color variables where current theme didn't remain set during browsing the forums.
+- fixed important security issue
+
+1.0.1
+Files affected: rokbb3.php
+
+Fixes:
+- fixed displaying Joomla! menu file under "/adm/" subpages

@@ -1,0 +1,38 @@
+.sagscroller{
+width: 200px;
+height:250px;
+overflow:hidden;
+position:relative;
+border:0px solid black;
+border-radius: 0px;
+-moz-border-radius: 0px;
+-webkit-border-radius: 0px;
+}
+
+.sagscroller a{
+font-weight:bold;
+}
+
+.sagscroller ul{
+position:absolute;
+margin:0;
+padding:0;
+background:transparent;
+list-style:none;
+width: 100%;
+}
+
+.sagscroller ul li{
+display:block;
+}
+
+.sagscroller ul li .rsscontent{
+font-size:90%;
+}
+
+.sagscroller ul li .rsslabel{
+margin-top:5px;
+background: #eee;
+font-size:12px;
+clear: both;
+}

@@ -30,12 +30,12 @@ This project is a web application built using JavaScript and PHP. It includes fu
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/glcata/influencegaming.git
+    git clone https://github.com/glcata/influencegaming-web-app.git
     ```
 
 2. Navigate to the project directory:
     ```sh
-    cd influencegaming
+    cd influencegaming-web-app
     ```
 
 3. Set up your Joomla environment and place the project files in the appropriate directories.

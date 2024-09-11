@@ -4,7 +4,7 @@
 
 This project is a web application built using JavaScript and PHP. It includes functionalities for animated collapsible sections and a forum installer.
 
-<img src="/overview.png" style="width:800px;height:400px"/>
+<img src="/overview.png" style="width:700px;height:300px"/>
 
 ## Technologies Used
 
